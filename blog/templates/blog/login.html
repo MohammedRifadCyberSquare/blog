@@ -11,9 +11,12 @@
                 <form class="card-body cardbody-color p-lg-5"  method="post">
                     {% csrf_token %}
                     <div class="text-center">
-                        <img src="{% static 'image/logo.png'%}"
-                            class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px"
-                            alt="profile">
+                       <h3>Login Now</h3>
+                       {% if message %}
+                       <div class="alert alert-danger mt-3" id="error-msg" role="alert">
+                        {{ message }}
+                      </div>
+                      {% endif %}
                     </div>
 
                     <div class="mb-3">
@@ -23,17 +26,26 @@
                     <div class="mb-3">
                         <input type="password" class="form-control" id="password" name="upassword" placeholder="password">
                     </div>
-                    <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100" value="login">Login</button>
+                    <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-2 w-100" value="login">Login</button>
+                        
                     </div>
                     <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not
                         Registered? <a href="/" class="text-dark fw-bold"> Create an
                             Account</a>
                     </div>
                 </form>
+                
             </div>
 
         </div>
     </div>
 </div>
-
+<script>
+    setTimeout(function() {
+       var errorMsg = document.getElementById('error-msg');
+       if (errorMsg) {
+          errorMsg.style.display = 'none';
+       }
+    }, 2000); // 5000 milliseconds = 5 seconds
+ </script>  
 {% endblock %}

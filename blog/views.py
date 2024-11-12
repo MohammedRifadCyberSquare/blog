@@ -22,6 +22,7 @@ def signup(request):
 
 def loginn(request):
     if request.method == 'POST':
+        
         name = request.POST.get('uname')
         password = request.POST.get('upassword')
         userr = authenticate(request, username=name, password=password)
@@ -29,7 +30,8 @@ def loginn(request):
             login(request, userr)
             return redirect('/home')
         else:
-            return redirect('/login')
+            message = "Invalid User Name and Password"
+            return render(request,'blog/login.html', {'message': message})
 
     return render(request, 'blog/login.html')
 
